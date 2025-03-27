@@ -2,7 +2,17 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+
+const corsOptions = {
+    origin: [
+      '*',
+    ],
+    methods: 'GET, POST, PUT, DELETE, OPTIONS',
+    credentials: true,
+  };
+  app.use(cors(corsOptions));
+
 
 app.get("/get-image", (req, res) => {
     const { id, url } = req.query; 
@@ -14,5 +24,7 @@ app.get("/get-image", (req, res) => {
     res.json({ id, url }); // Send back the same JSON response
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+//c
