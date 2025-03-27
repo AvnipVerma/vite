@@ -22,7 +22,7 @@ function App() {
     const data = images[currentImageIndex];
 
     try {
-      const response = await fetch(`http://localhost:5000/get-image?id=${data.id}&url=${encodeURIComponent(data.url)}`);
+      const response = await fetch(`https://vite-5.onrender.com/get-image?id=${data.id}&url=${encodeURIComponent(data.url)}`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch image data");
