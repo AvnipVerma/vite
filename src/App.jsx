@@ -22,15 +22,7 @@ function App() {
     const data = images[currentImageIndex];
 
     try {
-      const response = await fetch(`https://vite-5.onrender.com/get-image?id=${data.id}&url=${encodeURIComponent(data.url)}`,{
-        method: 'GET',
-        // HTTP method
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      
-
+      const response = await fetch(`https://vite-server-53oz.onrender.com/get-image?id=${data.id}&url=${encodeURIComponent(data.url)}`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch image data");
@@ -38,11 +30,12 @@ function App() {
 
       const result = await response.json();
       setImageData(result);
+
       // Cycle to the next image
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     } catch (error) {
       console.error("Error fetching image data:", error);
-      setError("Failed to fetch image. Please make sure the server is running on port 5000.");
+      setError("Failed to fetch image. Please check the server.");
     }
   };
 
